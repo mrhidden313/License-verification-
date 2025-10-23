@@ -6,39 +6,72 @@
     <title>ARMS LICENSE VERIFICATION</title>
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: white;
             font-family: Arial, sans-serif;
-            padding-top: 50px;
-            display: flex;
+            padding: 0px;
             justify-content: center;
             align-items: flex-start;
-            min-height: 100vh;
+            margin-top: 0px;
+            min-height: 8vh;
+            max-height: 1vh;
+            transform: scale(0.6);
+
+            
         }
         .verification-card {
-            max-width: 500px;
-            width: 100%;
-            padding: 30px;
+            max-width: 750px;
+            width: 120%;
+            padding: 0px 20px 30px 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: #fff;
+            margin-top: 0px;
             box-sizing: border-box;
         }
-        .logo-img { display:block; margin:0 auto 20px; width:100px; }
-        h1 { text-align:center; font-size:1.1rem; margin-bottom:30px; color:#141414; }
-        .search-area {
-            text-align:center; margin-bottom:30px; padding-bottom:20px;
-            border:2px solid rgb(206,205,205); border-radius:10px;
-            box-shadow:0 1px 11px rgb(121,115,115);
+        .logo-img { display:block;
+             margin:5px auto;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        margin-right: 160px;
+        
+             width:100px; }
+        h1 {
+             text-align:center;
+             font-size: 21px; 
+             color:#141414;
+             font-family: Verdana;
+             width: 100%;
+            font-weight: bolder;
+        padding: 0;
+        margin: 0px 8px 10px 16px;
         }
-        .search-area p { font-size:.9rem; margin-bottom:5px; font-weight:bold; }
+        .search-area {
+            text-align:center;
+            border:1px solid rgb(206,205,205); border-radius:10px;
+            box-shadow:0 0 1px 1px rgb(248,247,247);
+            width: 40vh;
+            background: white;
+            padding: 0px 1px 1px 0px;
+            margin: 0px 0px 0px 25px;
+        }
+        .search-area p { 
+            font-size:18px;
+             margin-bottom:10px;
+             font-weight:bold;
+             margin-top: 50px;
+             }
         .search-form { display:flex; flex-direction:column; gap:10px; align-items:center; }
         .search-input {
-            width:65%; padding:10px; border:1px solid #ced4da; border-radius:4px;
+            width:65%; padding:10px; border:1px solid #99a7b4; border-radius:4px;
             text-align:center; font-size:1rem;
         }
         .submit-btn {
-            padding:10px 15px; background:#28a745; color:#fff; border:none; border-radius:4px;
-            width:18vh; cursor:pointer; font-size:1rem;
+            padding:10px 10px; 
+            background:#16996f;
+             color:#fff; 
+             border:none; 
+             border-radius:4px;
+            width:10vh;
+            margin-bottom: 5px;
+             cursor:pointer; font-size:1rem;
         }
         .result-box { border:1px solid #ced4da; border-radius:5px; padding:15px; margin-top:20px; background:#fff; display:none; }
         .result-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #e0e0e0; font-size:1rem; }
@@ -47,16 +80,15 @@
         .result-value { font-weight:bold; color:#000; text-align:right; flex-basis:55%; }
     </style>
 </head>
-<body>
-
-    <div class="verification-card">
-        <img src="logo.png" alt="Pakistan Emblem" class="logo-img">
+<body style="padding: 0; margin: 0px;">
+    <img src="logo.png" alt="Pakistan Emblem" class="logo-img">
         <h1>ARMS LICENSE VERIFICATION</h1>
-
+    <div class="verification-card">
+    
         <div class="search-area">
-            <p>Search By CNIC (with dashes)</p>
+            <p>Search By CNIC with dashes</p>
             <form class="search-form" id="searchForm">
-                <input type="text" id="cnicInput" class="search-input" placeholder="12345-1234567-1" maxlength="15" required>
+                <input type="text" id="cnicInput" class="search-input" placeholder="1234512345671" maxlength="13" required>
                 <button type="submit" class="submit-btn">Submit</button>
             </form>
         </div>
