@@ -146,7 +146,7 @@ document.getElementById('searchForm').addEventListener('submit', async function(
 
         for (let line of lines) {
             const [id, name, father, license, weapon, caliber, weaponNo, cart, status, issue, expiry] = line.trim().split("|");
-            if (id === cnic) {
+            if (id.trim() === cnic.trim()) {
                 document.getElementById('rName').textContent = name || 'N/A';
                 document.getElementById('rFather').textContent = father || 'N/A';
                 document.getElementById('rLicense').textContent = license || 'N/A';
