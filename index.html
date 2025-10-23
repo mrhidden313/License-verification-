@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>ARMS LICENSE VERIFICATION</title>
     <style>
         body {
@@ -20,86 +19,32 @@
             width: 100%;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             background-color: #fff;
             box-sizing: border-box;
         }
-        .logo-img {
-            display: block;
-            margin: 0 auto 20px auto;
-            width: 100px; 
-        }
-        h1 {
-            text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #141414;
-        }
+        .logo-img { display:block; margin:0 auto 20px; width:100px; }
+        h1 { text-align:center; font-size:1.1rem; margin-bottom:30px; color:#141414; }
         .search-area {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border: 2px solid rgb(206, 205, 205);
-            border-radius: 10px;
-            box-shadow: 0 1px 11px rgb(121, 115, 115);
+            text-align:center; margin-bottom:30px; padding-bottom:20px;
+            border:2px solid rgb(206,205,205); border-radius:10px;
+            box-shadow:0 1px 11px rgb(121,115,115);
         }
-        .search-area p {
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .search-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
+        .search-area p { font-size:.9rem; margin-bottom:5px; font-weight:bold; }
+        .search-form { display:flex; flex-direction:column; gap:10px; align-items:center; }
         .search-input {
-            width: 65%;
-            padding: 10px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 1rem;
+            width:65%; padding:10px; border:1px solid #ced4da; border-radius:4px;
+            text-align:center; font-size:1rem;
         }
         .submit-btn {
-            padding: 10px 15px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            width: 18vh;
-            cursor: pointer;
-            font-size: 1rem;
+            padding:10px 15px; background:#28a745; color:#fff; border:none; border-radius:4px;
+            width:18vh; cursor:pointer; font-size:1rem;
         }
-        .result-box {
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            padding: 15px;
-            margin-top: 20px;
-            background-color: #fff;
-            display: none; /* Hidden initially */
-        }
-        .result-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 1rem;
-        }
-        .result-item:last-child {
-            border-bottom: none;
-        }
-        .result-label {
-            color: #555;
-            flex-basis: 45%;
-        }
-        .result-value {
-            font-weight: bold;
-            color: #000;
-            text-align: right;
-            flex-basis: 55%;
-        }
+        .result-box { border:1px solid #ced4da; border-radius:5px; padding:15px; margin-top:20px; background:#fff; display:none; }
+        .result-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #e0e0e0; font-size:1rem; }
+        .result-item:last-child { border-bottom:none; }
+        .result-label { color:#555; flex-basis:45%; }
+        .result-value { font-weight:bold; color:#000; text-align:right; flex-basis:55%; }
     </style>
 </head>
 <body>
@@ -109,7 +54,7 @@
         <h1>ARMS LICENSE VERIFICATION</h1>
 
         <div class="search-area">
-            <p>Search By CNIC without dashes</p>
+            <p>Search By CNIC (digits only)</p>
             <form class="search-form" id="searchForm">
                 <input type="text" id="cnicInput" class="search-input" placeholder="1234512345671" maxlength="13" required>
                 <button type="submit" class="submit-btn">Submit</button>
@@ -133,30 +78,55 @@
 <script>
 document.getElementById('searchForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const cnic = document.getElementById('cnicInput').value.trim();
+
+    // get user input and normalize to digits-only for comparison
+    const cnicRaw = document.getElementById('cnicInput').value || '';
+    const cnicDigits = cnicRaw.replace(/\D/g, '').trim();
+
+    if (!/^\d{13}$/.test(cnicDigits)) {
+        alert('Please enter exactly 13 digits for CNIC (no dashes).');
+        return;
+    }
+
     const box = document.getElementById('resultBox');
     box.style.display = 'block';
 
     try {
-        // 🔗 Replace this link with your RAW GitHub link
-        const res = await fetch("https://raw.githubusercontent.com/mrhidden313/Database/main/details.txt");
+        // ---- put your raw GitHub link here if you use GitHub ----
+        const res = await fetch("details.txt");
         const text = await res.text();
-        const lines = text.split("\n");
+
+        const lines = text.split(/\r?\n/);
         let found = false;
 
-        for (let line of lines) {
-            const [id, name, father, license, weapon, caliber, weaponNo, cart, status, issue, expiry] = line.trim().split("|");
-            if (id.trim() === cnic.trim()) {
-                document.getElementById('rName').textContent = name || 'N/A';
-                document.getElementById('rFather').textContent = father || 'N/A';
-                document.getElementById('rLicense').textContent = license || 'N/A';
-                document.getElementById('rWeapon').textContent = weapon || 'N/A';
-                document.getElementById('rCaliber').textContent = caliber || 'N/A';
-                document.getElementById('rWeaponNo').textContent = weaponNo || 'N/A';
-                document.getElementById('rCart').textContent = cart || 'N/A';
-                document.getElementById('rStatus').textContent = status || 'N/A';
-                document.getElementById('rIssue').textContent = issue || 'N/A';
-                document.getElementById('rExpiry').textContent = expiry || 'N/A';
+        for (let rawLine of lines) {
+            if (!rawLine || !rawLine.trim()) continue;
+
+            // split with optional spaces around pipes (robust)
+            const parts = rawLine.split(/\s*\|\s*/);
+
+            // if first part missing, try to continue
+            if (parts.length === 0) continue;
+
+            // normalize ID: remove non-digits
+            const id = (parts[0] || '').replace(/\D/g, '').trim();
+
+            // compare digits-only CNICs
+            if (id && id === cnicDigits) {
+                // map fields safely, fill missing with 'N/A'
+                const get = i => (parts[i] || '').trim() || 'N/A';
+
+                document.getElementById('rName').textContent = get(1);
+                document.getElementById('rFather').textContent = get(2);
+                document.getElementById('rLicense').textContent = get(3);
+                document.getElementById('rWeapon').textContent = get(4);
+                document.getElementById('rCaliber').textContent = get(5);
+                document.getElementById('rWeaponNo').textContent = get(6);
+                document.getElementById('rCart').textContent = get(7);
+                document.getElementById('rStatus').textContent = get(8);
+                document.getElementById('rIssue').textContent = get(9);
+                document.getElementById('rExpiry').textContent = get(10);
+
                 found = true;
                 break;
             }
@@ -166,6 +136,7 @@ document.getElementById('searchForm').addEventListener('submit', async function(
             document.querySelectorAll('.result-value').forEach(e => e.textContent = 'N/A');
         }
     } catch (err) {
+        console.error('Fetch/parse error:', err);
         document.querySelectorAll('.result-value').forEach(e => e.textContent = 'N/A');
     }
 });
