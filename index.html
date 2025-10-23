@@ -76,9 +76,7 @@
         }
         .result-box { border:1px solid #ced4da; 
                      border-radius:5px; 
-                     padding:15px; 
-                     margin: 20px 0px 10px -80px;
-                    
+                     padding:15px;
                      background:#fff;
                      display:none; }
         .result-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #e0e0e0; font-size:1rem; }
@@ -98,9 +96,7 @@
                 <input type="text" id="cnicInput" class="search-input" placeholder="1234512345671" maxlength="15" required>
                 <button type="submit" class="submit-btn">Submit</button>
             </form>
-        </div>
-
-        <div class="result-box" id="resultBox">
+            <div class="result-box" id="resultBox">
             <div class="result-item"><span class="result-label">Applicant Name:</span> <span class="result-value" id="rName">N/A</span></div>
             <div class="result-item"><span class="result-label">Father Name:</span> <span class="result-value" id="rFather">N/A</span></div>
             <div class="result-item"><span class="result-label">License No.:</span> <span class="result-value" id="rLicense">N/A</span></div>
@@ -112,7 +108,10 @@
             <div class="result-item"><span class="result-label">Issue Date:</span> <span class="result-value" id="rIssue">N/A</span></div>
             <div class="result-item"><span class="result-label">Expiry Date:</span> <span class="result-value" id="rExpiry">N/A</span></div>
         </div>
-    </div>
+        </div>
+        </div>
+
+        
 
 <script>
 document.getElementById('searchForm').addEventListener('submit', async function(e) {
